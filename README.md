@@ -1,5 +1,5 @@
 # Data-quality-analysis
-End‑to‑end data quality project using SQL, PostgreSQL, and Power BI to detect invalid CRM contact data and visualize issues in an interactive dashboard.
+This project presents an end-to-end data quality and governance use case focused on CRM contact data. Using SQL, PostgreSQL, and Power BI, it identifies invalid emails and related quality issues while framing them within a lightweight stewardship and remediation model.
 
 # Customer Data Quality Dashboard (PostgreSQL + Power BI)
 
@@ -58,6 +58,50 @@ This project simulates a small B2B customer and orders database with realistic d
 - If PostgreSQL connection settings differ on another machine, update the data source configuration in Power BI before refresh
 - The project focuses on identifying measurable data quality issues and presenting them in a clear dashboard format
 
+## Governance and Stewardship
+
+This project is not only a data quality dashboard but also a lightweight governance case study. It demonstrates how data quality monitoring can be connected to ownership, stewardship, business rules, and remediation workflows for CRM contact data.
+
+### Ownership Model
+
+| Data Domain | Data Owner | Data Steward | Technical Custodian |
+|-------------|------------|--------------|---------------------|
+| CRM Contact Data | Sales/Marketing Operations Manager | CRM Data Steward / Business Analyst | Data Engineering / BI Team |
+
+### Data Quality Rules
+
+The following business rules were assumed for this project:
+
+- Contact email should follow a valid email format
+- Active contacts should not have null or blank email values
+- Account status should belong to approved business values only
+- Duplicate contact records should be minimized or flagged for review
+- Contact and account relationships should remain consistent across source records
+
+### Severity and SLA Framework
+
+| Severity | Definition | Target Resolution Time |
+|----------|------------|------------------------|
+| Critical | Data issue affects customer communication, campaign execution, or compliance-sensitive reporting | 2 business days |
+| High | Data issue materially impacts operational reporting or active business processes | 5 business days |
+| Medium | Data issue is localized and does not immediately block operations | 10 business days |
+
+### Issue Management Workflow
+
+1. Detect invalid or non-compliant records through SQL checks
+2. Classify issues by severity and affected business process
+3. Assign issue ownership to the responsible steward or business owner
+4. Remediate source data or upstream process gaps
+5. Revalidate corrected records through SQL checks
+6. Close the issue and include it in periodic quality review reporting
+
+### Governance Metrics Tracked
+
+- Number of invalid email records
+- Invalid email rate by account status
+- Open issues by severity
+- SLA compliance rate
+- Mean time to resolution for recurring data quality issues
 
 
 
